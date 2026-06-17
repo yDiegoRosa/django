@@ -1,13 +1,16 @@
 # Django 1.0
 
-Projeto web desenvolvido com **Django 6.0.6** como parte do curso de aprendizado do framework. A aplicação inclui cadastro de produtos e clientes, painel administrativo personalizado e páginas de visualização com templates HTML.
+Projeto web desenvolvido com **Django 6.0.6** como parte do curso de aprendizado do framework. A aplicação inclui cadastro de produtos e clientes, painel administrativo personalizado e páginas de visualização com templates HTML, design moderno com dark mode e animações interativas.
 
 ## 🛠️ Tecnologias
 
 - **Python 3**
 - **Django 6.0.6**
 - **SQLite3** (banco de dados padrão)
-- **HTML5** (templates)
+- **HTML5** (templates com herança via `base.html`)
+- **CSS3** (design system customizado com variáveis, glassmorphism e responsivo)
+- **JavaScript** (animações e interações com o usuário)
+- **Google Fonts** (Inter)
 
 ## 📁 Estrutura do Projeto
 
@@ -22,11 +25,19 @@ django/
 │   └── asgi.py
 ├── core/                     # Aplicação principal
 │   ├── models.py             # Models: Product e Cliente
-│   ├── views.py              # Views: index e contact
+│   ├── views.py              # Views: index, contact e product
 │   ├── urls.py               # Rotas da aplicação
 │   ├── admin.py              # Configuração do painel admin
+│   ├── static/
+│   │   ├── css/
+│   │   │   └── style.css     # Design system completo
+│   │   ├── js/
+│   │   │   └── main.js       # Animações e interações
+│   │   └── images/
 │   └── templates/
-│       ├── index.html        # Página inicial
+│       ├── base.html         # Template base (navbar + footer)
+│       ├── index.html        # Página inicial com catálogo
+│       ├── product.html      # Página de detalhe do produto
 │       └── contact.html      # Página de contato
 └── README.md
 ```
@@ -51,11 +62,36 @@ django/
 
 ## 🌐 Rotas
 
-| Rota           | View      | Descrição                  |
-|----------------|-----------|----------------------------|
-| `/`            | `index`   | Página inicial             |
-| `/contact`     | `contact` | Página de contato          |
-| `/admMaster/`  | Admin     | Painel administrativo      |
+| Rota                  | View      | Descrição                       |
+|-----------------------|-----------|---------------------------------|
+| `/`                   | `index`   | Página inicial com catálogo     |
+| `/product/<int:pk>/`  | `product` | Detalhe de um produto           |
+| `/contact`            | `contact` | Página de contato               |
+| `/admMaster/`         | Admin     | Painel administrativo           |
+
+## 🎨 Design & UI
+
+O projeto utiliza um design moderno com as seguintes características:
+
+- **Dark mode** com paleta de cores cuidadosamente selecionada
+- **Glassmorphism** com backdrop-filter e bordas translúcidas
+- **Gradientes suaves** no hero e na marca
+- **Layout responsivo** adaptado para mobile e desktop
+- **Tipografia Inter** via Google Fonts
+- **Variáveis CSS** para manutenção consistente do design system
+
+## ✨ Animações & Interações (JavaScript)
+
+| Efeito                | Descrição                                                    |
+|-----------------------|--------------------------------------------------------------|
+| 🎯 Scroll Reveal      | Elementos surgem suavemente ao entrar na viewport            |
+| ✨ Cursor Glow         | Halo de luz roxa que segue o cursor (desktop)                |
+| 💧 Ripple Effect       | Efeito de onda ao clicar em links e botões                   |
+| 🎲 3D Card Tilt        | Cards inclinam em 3D ao mover o mouse sobre eles             |
+| 📜 Navbar Scroll       | Navbar encolhe e esconde/mostra conforme rolagem             |
+| 🔢 Counters Animados   | Preço e quantidade contam de 0 até o valor real              |
+| 🔍 Table Row Focus     | Ao hover numa linha da tabela, as demais ficam transparentes |
+| 🎬 Page Transitions    | Fade suave entre navegações de página                        |
 
 ## ⚙️ Painel Administrativo
 
@@ -102,6 +138,7 @@ Acesse em: `http://localhost:8000/admMaster/`
 
 7. **Acesse no navegador:**
    - Página inicial: `http://localhost:8000/`
+   - Detalhe do produto: `http://localhost:8000/product/1/`
    - Contato: `http://localhost:8000/contact`
    - Admin: `http://localhost:8000/admMaster/`
 
