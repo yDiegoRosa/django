@@ -7,12 +7,14 @@ class Product(models.Model):
     description = models.TextField('Descrição')
     amount = models.IntegerField('Quantidade')
 
+    def __str__(self):
+        return f'{self.name}'
+
 class cliente (models.Model):
     name = models.CharField('Nome',max_length=50)
     sobrenome = models.CharField('Sobrenome',max_length=50)
     email = models.EmailField('E-mail',max_length=100)
     phone = models.CharField('Telefone',max_length=15)
     
-    
     def __str__(self):
-        return self.name
+        return f'{self.name} {self.sobrenome}'
