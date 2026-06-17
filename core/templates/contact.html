@@ -1,13 +1,44 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contato - Django 1.0</title>
-</head>
-<body>
-    <h1>Contato</h1>
-    <p>Entre em contato pelo e-mail: [EMAIL_ADDRESS]</p>
-    <a href="/">Voltar</a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Contato — Django 1.0{% endblock %}
+{% block meta_description %}Entre em contato conosco{% endblock %}
+{% block nav_contact %}active{% endblock %}
+
+{% block content %}
+<section class="contact-section">
+    <div class="hero" style="padding-bottom: var(--spacing-xl);">
+        <h1>Entre em Contato</h1>
+        <p>Estamos aqui para ajudar. Escolha o canal de comunicação que preferir.</p>
+    </div>
+
+    <div class="contact-card">
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="icon">📧</div>
+                <div class="info">
+                    <span class="label">E-mail</span>
+                    <span class="value">contato@django1.com.br</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="icon">📱</div>
+                <div class="info">
+                    <span class="label">Telefone</span>
+                    <span class="value">(11) 99999-0000</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="icon">📍</div>
+                <div class="info">
+                    <span class="label">Localização</span>
+                    <span class="value">São Paulo, SP — Brasil</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: var(--spacing-xl);">
+        <a href="{% url 'index' %}" class="back-btn">← Voltar ao início</a>
+    </div>
+</section>
+{% endblock %}

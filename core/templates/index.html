@@ -1,19 +1,56 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django 1.0</title>
-</head>
-<body>
-    <h1>Django 1.0</h1>
-    <p>Bem vindo ao Django 1.0</p>
-    <a href="/contact">Contato</a>
-    <a href="/about">Sobre</a>
-    <a href="/products">Produtos</a>
-    <a href="/contact">Contato</a>
+{% extends 'base.html' %}
 
-    <h2>{{curso}}</h2>
-    <p>{{aluno}}</p>
-</body>
-</html>
+{% block title %}Início — Django 1.0{% endblock %}
+{% block meta_description %}Catálogo de produtos da plataforma Django 1.0{% endblock %}
+{% block nav_home %}active{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-badge">
+        <span class="dot"></span>
+        {{ curso }}
+    </div>
+    <h1>Bem-vindo ao Django 1.0</h1>
+    <p>Explore nosso catálogo de produtos com uma interface moderna e intuitiva.</p>
+</section>
+
+<!-- Products Table -->
+<div class="section-header">
+    <h2>📦 Produtos</h2>
+    <span class="count-badge">{{ products|length }} itens</span>
+</div>
+
+<div class="table-wrapper">
+    {% if products %}
+    <table class="products-table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Estoque</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>
+                    <a href="{% url 'product' product.id %}" class="product-name-link">
+                        {{ product.name }}
+                        <span class="arrow">→</span>
+                    </a>
+                </td>
+                <td><span class="price-tag">R$ {{ product.price }}</span></td>
+                <td><span class="amount-tag">{{ product.amount }}</span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+        <div class="icon">📦</div>
+        <p>Nenhum produto cadastrado ainda.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

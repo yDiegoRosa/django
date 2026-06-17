@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} — Django 1.0{% endblock %}
+{% block meta_description %}Detalhes do produto {{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="product-detail">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="{% url 'index' %}">Início</a>
+        <span class="separator">/</span>
+        <span>{{ product.name }}</span>
+    </nav>
+
+    <!-- Detail Card -->
+    <div class="detail-card">
+        <h1>{{ product.name }}</h1>
+
+        {% if product.description %}
+        <p class="description">{{ product.description }}</p>
+        {% endif %}
+
+        <div class="detail-stats">
+            <div class="stat-card">
+                <span class="label">Preço</span>
+                <span class="value price">R$ {{ product.price }}</span>
+            </div>
+            <div class="stat-card">
+                <span class="label">Em estoque</span>
+                <span class="value amount">{{ product.amount }}</span>
+            </div>
+        </div>
+
+        <a href="{% url 'index' %}" class="back-btn">
+            ← Voltar ao catálogo
+        </a>
+    </div>
+</div>
+{% endblock %}
